@@ -44,6 +44,7 @@ Das Modell ist ein Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
 
 ```
     Index   Feature     Beschreibung
+    -----   -------     ------------
     0       angle       Blickrichtung [0, 1]
     1-4     player      Health, MomX, MomY, Weapon
     5-20    rays        16 Abstands-Strahlen (0..2048)
