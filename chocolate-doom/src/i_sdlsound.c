@@ -362,7 +362,7 @@ static boolean ExpandSoundData_SRC(sfxinfo_t *sfxinfo,
         // Unclear whether 128 should be interpreted as "zero" or whether a
         // symmetrical range should be assumed.  The following assumes a
         // symmetrical range.
-        src_data.data_in[i] = data[i] / 127.5 - 1;
+        ((float *)src_data.data_in)[i] = data[i] / 127.5 - 1;
     }
 
     // Do the sound conversion
@@ -430,7 +430,7 @@ static boolean ExpandSoundData_SRC(sfxinfo_t *sfxinfo,
         expanded[abuf_index++] = cvtval_i;
     }
 
-    free(src_data.data_in);
+    free((void *)src_data.data_in);
     free(src_data.data_out);
 
     if (clipped > 0)
