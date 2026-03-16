@@ -70,23 +70,28 @@ python train_doom_bot.py --epochs 150 --data_dir ./data --output_dir ./output
 - `/training/output/doom_bot.pth` – PyTorch checkpoint (includes scaler parameters and training history)
 - `/training/output/training_curves.png` – Loss and accuracy plots
 
-### 3. Export C Header
+Export C Header:
 
 ```bash
 python export_weights.py --checkpoint ./output/doom_bot.pth --output ./output/nn_weights.h
 ```
 
-### 4. Deploy on STM32N6570-DK
+### 3. Deploy on STM32N6570-DK
 
 Copy `nn_weights.h` into the STM32CubeIDE project and flash the board.
 
     ./Doom_STM32N6570_DK/STM32CubeIDE/AppS/Src/NeuralNet/nn_weights.h
 
-For debugging this can also be tested on the host PC (run Chocolate Doom with `-nnbot`)
+See [Doom_STM32N6570_DK/README.md](Doom_STM32N6570_DK/README.md) for build and flash instructions.
+
+For debugging the model can also be tested on the host PC.
+Copy the `nn_weights.h` to this location and rebuild chocolate-doom:
 
     ./chocolate-doom/src/doom/neuralnet/nn_weights.h
 
-See [Doom_STM32N6570_DK/README.md](Doom_STM32N6570_DK/README.md) for build and flash instructions.
+Run with updated weights:
+
+    ./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -nnbot -skill 2 -warp 1 5 -nnbot -nosfx -nomusic
 
 ## Model Architecture
 
@@ -139,7 +144,7 @@ The Chocolate Doom fork includes a lightweight NN integration. Five new source f
 **Running the bot (example on E1M5):**
 
 ```bash
-./src/chocolate-doom -iwad ../path/to/doom1.wad -nnbot -skill 2 -warp 1 5
+./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -nnbot -skill 2 -warp 1 5 -nosfx -nomusic
 ```
 
 When launched *without* `-nnbot`, the game initializes the CSV logger instead, so every regular play session produces training data.
