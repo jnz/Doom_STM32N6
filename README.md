@@ -50,7 +50,7 @@ cd chocolate-doom
 
 ### 2. Train the Model
 
-See `training/readme.md` for details.
+See `training/README.md` for details.
 
 ```bash
 cd training
