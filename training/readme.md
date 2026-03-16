@@ -141,6 +141,7 @@ Look-Up-Tabellen auf die internen Einheiten der Doom-Engine abgebildet:
     Drehen (turn)       0, 1, 2, 3, 4       {-512, -192, 0, 192, 512} (Präzise bis Scharf)
     Feuern / Benutzen   0, 1                `BT_ATTACK` / `BT_USE` (Bits setzen)
 
+![Architecture](./doc/architecture_00.png)
 
 ### C-Header Export (für direkten C-Code)
 
