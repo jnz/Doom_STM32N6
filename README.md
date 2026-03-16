@@ -24,6 +24,52 @@ inference in C on embedded hardware.
 | **training/** | Process CSV recordings, train a multi-head MLP, export to ONNX and C header | [training/README.md](training/README.md) |
 | **Doom_STM32N6570_DK/** | STM32CubeIDE project that runs Doom with the trained model on the N6 board | [Doom_STM32N6570_DK/README.md](Doom_STM32N6570_DK/README.md) |
 
+## Directly flashing a precompiled Doom version to the STM32N6570-DK
+
+If you just want to run DOOM on your STM32N6570-DK without building from
+source, use the precompiled binaries.
+
+### Prerequisites
+
+- **STM32CubeProgrammer** installed (part of [STM32CubeCLT](https://www.st.com/en/development-tools/stm32cubeclt.html))
+- Environment variable `STM32CLT_PATH` set to your STM32CubeCLT installation directory
+- Board connected via SWD (e.g. ST-Link)
+
+### Directory Structure
+
+```
+Doom_STM32N6570_DK/
+├── precompiled/
+│   ├── flash_doom.bat          # Flash script
+│   ├── Doom_FSBL-Trusted.bin   # Signed first-stage bootloader
+│   └── Doom_AppS-Trusted.bin   # Signed application
+└── wad/
+    └── DOOM1.WAD               # Shareware WAD
+```
+
+### How to Flash
+
+1. Set the board to **Development Mode**:
+   - **BOOT1** = 1-3 (pins 1 and 3 bridged)
+   - Reset or power-cycle the board.
+2. Open a command prompt in `precompiled/` and run:
+   ```
+   flash_doom.bat
+   ```
+   This flashes all three images in one go:
+   | File | Flash Address |
+   |---|---|
+   | `Doom_FSBL-Trusted.bin` | `0x70000000` |
+   | `Doom_AppS-Trusted.bin` | `0x70100000` |
+   | `DOOM1.WAD` | `0x70300000` |
+
+4. After flashing, set the board to **Boot from Flash**:
+   - **BOOT0** = 1-2 (pins 1 and 2 bridged)
+   - **BOOT1** = 1-2 (pins 1 and 2 bridged)
+   - Reset or power-cycle the board.
+
+DOOM should now start automatically.
+
 ## Workflow
 
 Diagram:
