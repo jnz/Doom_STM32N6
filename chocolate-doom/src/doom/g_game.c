@@ -71,8 +71,8 @@
 
 
 #include "g_game.h"
-#include "nn_player.h"
-#include "nn_logger.h"
+#include "neuralnet/nn_player.h"
+#include "neuralnet/nn_logger.h"
 
 static boolean nn_bot_active = false;
 
