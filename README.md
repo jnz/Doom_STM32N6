@@ -31,12 +31,12 @@ Diagram:
 
      1. Play Doom          2. Train Model              3. Deploy to MCU
 
-     ┌─────────────────┐   ┌───────────────────────┐  ┌───────────────────────┐
-     │chocholate-doom  │   │ train_doom_bot.py     │  │STM32CubeIDE project   │
-     │                 ├──►│                       ├─►│                       │
-     │Record CSVs      │   │ CSV -> MLP -> onnx    │  │nn_weights.h (C Header)│
-     │from gameplay    │   │            -> C header│  │                       │
-     └─────────────────┘   └───────────────────────┘  └───────────────────────┘
+     +-----------------+   +-----------------------+  +-----------------------+
+     |chocholate-doom  |   | train_doom_bot.py     |  |STM32CubeIDE project   |
+     |                 |-->|                       |─>|                       |
+     |Record CSVs      |   | CSV -> MLP -> onnx    |  |nn_weights.h (C Header)|
+     |from gameplay    |   |            -> C header|  |                       |
+     +-----------------+   +-----------------------+  +-----------------------+
 
 ## Quick Start
 
