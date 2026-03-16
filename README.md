@@ -27,13 +27,15 @@ inference in C on embedded hardware.
 ## Workflow
 
 ```
- 1. Play Doom        2. Train Model         3. Deploy to MCU
-┌────────────-──┐   ┌───────────────────┐   ┌───────────────────────┐
-│ chocolate-doom│──▶│ train_doom_bot.py │──▶│ STM32CubeIDE Project  │
-│               │   │                   │   │                       │
-│ Record CSVs   │   │ CSV → MLP → ONNX  │   │ nn_weights.h → C code │
-│ from gameplay │   │       → C header  │   │ on STM32N6570-DK      │
-└────────────-──┘   └───────────────────┘   └───────────────────────┘
+ 1. Play Doom          2. Train Model              3. Deploy to MCU
+
+ ┌─────────────────┐   ┌───────────────────────┐  ┌───────────────────────┐
+ │chocholate-doom  │   │ train_doom_bot.py     │  │STM32CubeIDE project   │
+ │                 ├──►│                       ├─►│                       │
+ │Record CSVs      │   │ CSV -> MLP -> onnx    │  │nn_weights.h (C Header)│
+ │from gameplay    │   │            -> C header│  │                       │
+ └─────────────────┘   └───────────────────────┘  └───────────────────────┘
+
 ```
 
 ## Quick Start
