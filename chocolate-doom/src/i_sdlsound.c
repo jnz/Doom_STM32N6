@@ -527,8 +527,7 @@ static void WriteWAV(char *filename, byte *data,
 // Generic sound expansion function for any sample rate.
 // Returns number of clipped samples (always 0).
 
-static boolean ExpandSoundData_SDL(sfxinfo_t *sfxinfo,
-                                   byte *data,
+static boolean ExpandSoundData_SDL(sfxinfo_t *sfxinfo, byte *data,
                                    int samplerate,
                                    int length)
 {
@@ -544,15 +543,6 @@ static boolean ExpandSoundData_SDL(sfxinfo_t *sfxinfo,
 
     expanded_length *= 4;
 
-    // Allocate a chunk in which to expand the sound
-
-    chunk = AllocateSound(sfxinfo, expanded_length);
-
-    if (chunk == NULL)
-    {
-        return false;
-    }
-
     // If we can, use the standard / optimized SDL conversion routines.
 
     if (samplerate <= mixer_freq
@@ -561,6 +551,14 @@ static boolean ExpandSoundData_SDL(sfxinfo_t *sfxinfo,
                           AUDIO_U8, 1, samplerate,
                           mixer_format, mixer_channels, mixer_freq))
     {
+        // Allocate a chunk in which to expand the sound
+
+        chunk = AllocateSound(sfxinfo, expanded_length * convertor.len_mult);
+        if (chunk == NULL)
+        {
+            return false;
+        }
+
         convertor.buf = chunk->abuf;
         convertor.len = length;
         memcpy(convertor.buf, data, length);
@@ -569,6 +567,12 @@ static boolean ExpandSoundData_SDL(sfxinfo_t *sfxinfo,
     }
     else
     {
+        chunk = AllocateSound(sfxinfo, expanded_length);
+        if (chunk == NULL)
+        {
+            return false;
+        }
+
         Sint16 *expanded = (Sint16 *) chunk->abuf;
         int expanded_length;
         int expand_ratio;
