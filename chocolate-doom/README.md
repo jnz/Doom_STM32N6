@@ -16,3 +16,10 @@ sudo apt install build-essential autoconf automake pkg-config \
 ./configure
 make
 ```
+
+## Run:
+
+```bash
+src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -window -3
+```
+
