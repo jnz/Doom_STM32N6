@@ -1,0 +1,7 @@
+STM32CubeIDE/AppS/.settings/
+STM32CubeIDE/Boot/.settings/
+STM32CubeIDE/AppS/Debug/
+STM32CubeIDE/Boot/Debug/
+STM32CubeIDE/ExtMemLoader/.settings/
+STM32CubeIDE/.settings/
+tags
