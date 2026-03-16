@@ -28,12 +28,12 @@ inference in C on embedded hardware.
 
 ```
  1. Play Doom        2. Train Model         3. Deploy to MCU
-┌──────────────┐   ┌───────────────────┐   ┌───────────────────────┐
+┌────────────-──┐   ┌───────────────────┐   ┌───────────────────────┐
 │ chocolate-doom│──▶│ train_doom_bot.py │──▶│ STM32CubeIDE Project  │
-│              │   │                   │   │                       │
-│ Record CSVs  │   │ CSV → MLP → ONNX  │   │ nn_weights.h → C code │
-│ from gameplay│   │       → C header  │   │ on STM32N6570-DK      │
-└──────────────┘   └───────────────────┘   └───────────────────────┘
+│               │   │                   │   │                       │
+│ Record CSVs   │   │ CSV → MLP → ONNX  │   │ nn_weights.h → C code │
+│ from gameplay │   │       → C header  │   │ on STM32N6570-DK      │
+└────────────-──┘   └───────────────────┘   └───────────────────────┘
 ```
 
 ## Quick Start
@@ -77,6 +77,13 @@ python export_weights.py --checkpoint ./output/doom_bot.pth --output ./output/nn
 ### 4. Deploy on STM32N6570-DK
 
 Copy `nn_weights.h` into the STM32CubeIDE project and flash the board.
+
+    ./Doom_STM32N6570_DK/STM32CubeIDE/AppS/Src/NeuralNet/nn_weights.h
+
+For debugging this can also be tested on the host PC (run Chocolate Doom with `-nnbot`)
+
+    ./chocolate-doom/src/doom/neuralnet/nn_weights.h
+
 See [Doom_STM32N6570_DK/README.md](Doom_STM32N6570_DK/README.md) for build and flash instructions.
 
 ## Model Architecture
