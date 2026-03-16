@@ -82,9 +82,7 @@ Das Modell ist ein Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
 
 16 Abstandsmessungen werden für die Rays (Index 5-20) generiert. Ausgehend von der Spielerblickrichtung, gegen den Uhrzeigersinn. Siehe Video:
 
-<video src="doc/bsp_raycast.mp4" width="100%" controls>
-  Video Tag not supported
-</video>
+[![Raycast](./doc/doom_raycast_37.png)](./doc/bsp_raycast.mp4)
 
 #### Ausgabe
 
