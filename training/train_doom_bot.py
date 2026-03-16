@@ -277,7 +277,7 @@ def export_onnx(model, input_size, output_path):
     torch.onnx.export(model, dummy, output_path,
                       input_names=['gamestate'],
                       output_names=['fwd', 'side', 'turn', 'fire', 'use'],
-                      opset_version=14, do_constant_folding=True)
+                      opset_version=18, do_constant_folding=True)
     size = os.path.getsize(output_path)
     print(f"  ONNX: {output_path} ({size/1024:.1f} KB)")
 
