@@ -61,8 +61,10 @@ st_lib.c           st_lib.h     \
 st_stuff.c         st_stuff.h   \
 wi_stuff.c         wi_stuff.h   \
 neuralnet/nn_logger.c neuralnet/nn_logger.h \
+neuralnet/nn_infer.c  neuralnet/nn_infer.h  \
 neuralnet/nn_common.c neuralnet/nn_common.h \
-neuralnet/nn_player.c neuralnet/nn_player.h
+neuralnet/nn_player.c neuralnet/nn_player.h \
+neuralnet/nn_weights.h
 
 FEATURE_DEHACKED_SOURCE_FILES =            \
 deh_ammo.c                                 \
