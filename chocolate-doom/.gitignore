@@ -49,3 +49,4 @@ msvc/libtextscreen.vcxproj.filters
 msvc/server.vcxproj.filters
 msvc/setup.vcxproj.filters
 msvc/strife.vcxproj.filters
+nn_training_*.csv
