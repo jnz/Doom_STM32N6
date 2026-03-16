@@ -55,6 +55,12 @@ void NN_Infer(const float *raw_features, nn_result_t *result)
     for (i = 0; i < NN_INPUT_SIZE; i++)
         scaled[i] = raw_features[i];
 
+    // ---------------
+    // !!! WARNING !!!
+    // ---------------
+    // If you change the scaling here, adjust the training script in
+    // ./training/train_doom_bot.py as well.
+
     // Player [0..4]: angle, health, momx, momy, weapon
     // scaled[0] already [0,1)
     scaled[1] /= 200.0f;    // health

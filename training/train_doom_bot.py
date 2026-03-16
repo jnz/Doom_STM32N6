@@ -82,6 +82,12 @@ def preprocess(df):
 
     # Player [0..4]
     # X[:,0] angle already [0,1)
+
+    # ---------------
+    # !!! WARNING !!!
+    # ---------------
+    # If you change the scaling here, adjust NN_Infer(...) in the C
+    # code as well: nn_infer.c in chocolate-doom and Doom_STM32N6570-DK.
     X[:, 1] /= 200.0    # health
     X[:, 2] /= 30.0     # momx
     X[:, 3] /= 30.0     # momy
