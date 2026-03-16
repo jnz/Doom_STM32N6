@@ -1,0 +1,7 @@
+data/*.csv
+output/*.onnx
+output/*.pth
+output/training_curves.png
+output/nn_weights.h
+venv/
+
