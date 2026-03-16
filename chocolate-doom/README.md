@@ -1,3 +1,6 @@
+# Installation on Linux/WSL2
+
+## Prerequisites:
 
 ```bash
 sudo apt update
@@ -6,6 +9,10 @@ sudo apt install build-essential autoconf automake pkg-config \
                  libsdl-image1.2-dev libsamplerate0-dev libpng-dev zlib1g-dev
 ```
 
+## Build:
+
 ```bash
+./autogen.sh
 ./configure
+make
 ```
