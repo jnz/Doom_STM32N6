@@ -4,7 +4,7 @@ Dieses Projekt trainiert ein Multi-Head MLP, um einen Doom-Bot für die
 N64-Engine (STM32 port) zu steuern. Das Modell nutzt Raycasting, Spieler-Status
 und Monster-Vektoren als Eingabe.
 
-### 1. Setup Windows
+### Setup Windows
 
 ```
 python -m venv venv
@@ -12,7 +12,7 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
-### 1. Setup Linux/macOS
+### Setup Linux/macOS
 
 ```bash
 python3 -m venv venv
@@ -20,7 +20,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Training starten
+### Training starten
 
 Trainingsdaten in `nn_training_*.csv` Dateien in den `/data` Ordner legen.
 
@@ -36,7 +36,7 @@ Outputs nach dem Training:
  * `output/doom_bot.pth`: PyTorch Checkpoint inkl. Scaler-Parametern und History.
  * `output/training_curves.png`: Visualisierung von Loss und Accuracy.
 
-### 3. Architektur & Features
+### Architektur & Features
 
 Das Modell ist ein Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
 
@@ -51,14 +51,13 @@ Das Modell ist ein Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
     30-34   last_act    Feedback der letzten Aktion (Fwd, Side, Turn, Fire, Use)
 ```
 
-*Wichtig: Alle Werte werden im Python-Preprocessing zusätzlich skaliert, bevor sie in das Netz fließen.*
 
 | Index | Gruppe | Feature | Einheit / Wertebereich | Beschreibung |
 |:---:|:---|:---|:---|:---|
 | **0** | Player | `angle` | `0.0` bis `1.0` | Blickrichtung (0 bis 2 pi) |
 | **1** | Player | `health` | `0` bis `200` | Aktuelle Trefferpunkte |
-| **2** | Player | `momx` | `~ -30.0` bis `30.0` | Impuls in X (Map-Units pro Tic) |
-| **3** | Player | `momy` | `~ -30.0` bis `30.0` | Impuls in Y (Map-Units pro Tic) |
+| **2** | Player | `momx` | `~ -30.0` bis `30.0` | Geschwindigkeit in X (Map-Units pro Tic) |
+| **3** | Player | `momy` | `~ -30.0` bis `30.0` | Geschwindigkeit in Y (Map-Units pro Tic) |
 | **4** | Player | `weapon` | `0` bis `8` | ID der gewählten Waffe (ReadyWeapon) |
 | **5-20** | Rays | `ray0..15` | `0.0` bis `2048.0` | 16 Umgebungs-Strahlen (Map-Units) |
 | **21** | Monster 0 | `m0_dx` | `~ -2048` bis `2048` | Relative X-Distanz (Positiv = Vorne) |
@@ -75,6 +74,17 @@ Das Modell ist ein Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
 | **32** | Last Act | `last_turn` | `0, 1, 2, 3, 4` | 0: Scharf R, 1: R, 2: Mittel, 3: L, 4: Scharf L |
 | **33** | Last Act | `last_fire` | `0.0` oder `1.0` | 1.0 wenn im letzten Tic gefeuert wurde |
 | **34** | Last Act | `last_use` | `0.0` oder `1.0` | 1.0 wenn im letzten Tic "Use" aktiv war |
+
+*Wichtig:* Alle Werte werden im Python-Preprocessing zusätzlich skaliert, bevor sie in das Netz fließen.
+*Hinweis:* Die X/Y Werte sind transformiert in das Koordinatensystem des Spielers.
+
+### Ray Casting
+
+16 Abstandsmessungen werden für die Rays (Index 5-20) generiert. Ausgehend von der Spielerblickrichtung, gegen den Uhrzeigersinn. Siehe Video:
+
+<video src="doc/bsp_raycast.mp4" width="100%" controls>
+  Video Tag not supported
+</video>
 
 #### Ausgabe
 
@@ -133,8 +143,9 @@ Look-Up-Tabellen auf die internen Einheiten der Doom-Engine abgebildet:
     Feuern / Benutzen   0, 1                `BT_ATTACK` / `BT_USE` (Bits setzen)
 
 
-### 4. C-Header Export (für direkten C-Code)
+### C-Header Export (für direkten C-Code)
 
 ```bash
 python export_weights.py --checkpoint ./output/doom_bot.pth --output ./output/nn_weights.h
 ```
+
