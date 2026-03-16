@@ -1,5 +1,6 @@
 data/*.csv
 output/*.onnx
+output/*.onnx.data
 output/*.pth
 output/training_curves.png
 output/nn_weights.h
