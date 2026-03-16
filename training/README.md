@@ -76,7 +76,8 @@ The model is a Multi-Head MLP (35 Inputs -> 128 -> 64 -> 32 -> Heads).
 | **33** | Last Act | `last_fire` | `0.0` or `1.0` | 1.0 if fired in the last tic |
 | **34** | Last Act | `last_use` | `0.0` or `1.0` | 1.0 if "Use" was active in the last tic |
 
-*Important:* All values are additionally scaled in Python preprocessing before being fed into the network.
+**Important:** All values are additionally scaled in Python preprocessing before being fed into the network.
+
 *Note:* The X/Y values are transformed into the player's coordinate system.
 
 ### Ray Casting

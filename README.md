@@ -205,3 +205,4 @@ When launched *without* `-nnbot`, the game initializes the CSV logger instead, s
 
 See individual subdirectory READMEs for licensing details. Chocolate Doom is licensed under the GNU GPL v2.
 
+Shareware WAD, freely redistributable (© id Software).
