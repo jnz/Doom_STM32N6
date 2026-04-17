@@ -1,10 +1,11 @@
 # Doom STM32N6570-DK (LRUN Implementation)
 
-This project brings Doom to the STM32N6570-DK Discovery Kit. To achieve maximum
-performance on the Cortex-M55, this project utilizes LRUN (Load and Run) mode.
+This project brings Doom to the STM32N6570-DK Discovery Kit.
+For good performance on the Cortex-M55, this project uses the LRUN (Load and Run) mode.
 The application code is stored in external Flash but is copied to and executed
 from the internal AXISRAM at 600 MHz, bypassing the latency of XIP (Execute In
-Place) - previously XIP was supported, but this is no longer used.
+Place) - previously XIP was supported, but this is no longer used, but I might
+have left some traces of XIP here and there.
 
 System Specifications
 
