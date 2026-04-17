@@ -93,7 +93,7 @@ Play the game and Chocolate Doom will log your inputs to CSV files:
 ```bash
 cd chocolate-doom
 # Build according to chocolate-doom/README.md, then e.g. train on E1M5:
-./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -skill 1 -warp 1 5 -window -3 -nosfx -nomusic
+./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/DOOM1.WAD -skill 1 -warp 1 5 -window -3 -nosfx -nomusic
 ```
 
 ### 2. Train the Model
