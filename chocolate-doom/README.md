@@ -12,6 +12,7 @@ sudo apt install build-essential autoconf automake pkg-config \
 ## Build:
 
 ```bash
+chmod +x ./autogen.sh
 ./autogen.sh
 ./configure
 make
@@ -20,6 +21,6 @@ make
 ## Run:
 
 ```bash
-src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -window -3 -nosfx -nomusic
+src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/DOOM1.WAD -window -3 -nosfx -nomusic
 ```
 
