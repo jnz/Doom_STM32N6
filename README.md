@@ -135,6 +135,11 @@ Copy the `nn_weights.h` to this location and rebuild chocolate-doom:
 
     ./chocolate-doom/src/doom/neuralnet/nn_weights.h
 
+Rebuild:
+
+    cd chocolate-doom
+    make
+
 Run with updated weights:
 
     ./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/DOOM1.WAD -nnbot -skill 2 -warp 1 5 -nnbot -nosfx -nomusic
