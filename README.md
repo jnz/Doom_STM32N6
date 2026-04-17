@@ -137,7 +137,7 @@ Copy the `nn_weights.h` to this location and rebuild chocolate-doom:
 
 Run with updated weights:
 
-    ./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/doom1.wad -nnbot -skill 2 -warp 1 5 -nnbot -nosfx -nomusic
+    ./src/chocolate-doom -iwad ../Doom_STM32N6570_DK/wad/DOOM1.WAD -nnbot -skill 2 -warp 1 5 -nnbot -nosfx -nomusic
 
 ## Model Architecture
 
